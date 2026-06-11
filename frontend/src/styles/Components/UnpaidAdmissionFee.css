@@ -1,0 +1,263 @@
+/* UnpaidAdmissionFee.css */
+.loader-spiner {
+    border: 3px solid rgba(52, 152, 219, 0.3);
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .unpaid-fees-container {
+    max-width: 800px;
+    margin: 20px auto 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .unpaid-fees-container h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    background-color: #fadbd8;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .unpaid-fees-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .unpaid-fees-list li {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .unpaid-fees-list li:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .unpaid-fees-list p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #34495e;
+  }
+  
+  .unpaid-fees-list p:first-child {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .unpaid-fees-list p:last-child {
+    color: #e74c3c;
+    font-weight: bold;
+  }
+  
+  /* Pagination controls */
+  .pagination-controlss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  #next-prev-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin: 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #next-prev-btn:hover:not(:disabled) {
+    background-color: #2980b9;
+  }
+  
+  #next-prev-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    font-size: 16px;
+    color: #2c3e50;
+  }
+  
+  /* Jump to page form */
+  .jump-page-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .jump-page-form label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #2c3e50;
+  }
+  
+  #jumpPage-inpt {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  #jmp-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #jmp-btn:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1024px) {
+    .unpaid-fees-container {
+      max-width: 90%;
+      margin: 100px auto 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .unpaid-fees-container {
+      margin: -30px auto 20px;
+      padding: 15px;
+    }
+  
+    .unpaid-fees-container h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+  
+    .unpaid-fees-list li {
+      padding: 12px;
+    }
+  
+    .unpaid-fees-list p {
+      font-size: 15px;
+    }
+  
+    .pagination-controlss {
+      flex-direction: column;
+    }
+  
+    .jump-page-form {
+      margin-top: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .unpaid-fees-container {
+      margin: -30px 10px 10px;
+      padding: 10px;
+    }
+  
+    .unpaid-fees-container h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+  
+    .error-message {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .unpaid-fees-list li {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .unpaid-fees-list p {
+      font-size: 14px;
+      margin: 3px 0;
+    }
+  
+    .unpaid-fees-list p:first-child,
+    .unpaid-fees-list p:last-child {
+      font-size: 15px;
+    }
+  
+    #next-prev-btn,
+    #jmp-btn {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+  
+    .pagination span,
+    .jump-page-form label {
+      font-size: 14px;
+    }
+  
+    #jumpPage-inpt {
+      width: 50px;
+      padding: 4px;
+    }
+  }
+  
+  /* Accessibility improvements */
+  .unpaid-fees-list li:focus-within {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+  }
+  
+  /* Animation for list items */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .unpaid-fees-list li {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Ensure content is not hidden under fixed navbar */
+  body {
+    padding-top: 60px;
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-top: 80px;
+    }
+  }
+  
+  

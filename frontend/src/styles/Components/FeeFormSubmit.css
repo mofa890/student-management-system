@@ -1,0 +1,249 @@
+
+/* FeeFormSubmit.css */
+.fee-record-form {
+    max-width: 500px;
+    margin: 20px auto 40px; /* Increased top margin to prevent navbar overlap */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  .fee-record-form .lb {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .fee-record-form input[type="text"],
+  .fee-record-form input[type="number"],
+  .fee-record-form input[type="date"],
+  .fee-record-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .fee-record-form input[type="text"]:focus,
+  .fee-record-form input[type="number"]:focus,
+  .fee-record-form input[type="date"]:focus,
+  .fee-record-form select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  .fee-record-form input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+  }
+  
+  .fee-record-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fee-record-form button:hover {
+    background-color: #2980b9;
+  }
+  
+  .fee-record-form button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+  }
+  
+  .success-message {
+    color: #27ae60;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8f8f5;
+    border-radius: 4px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1024px) {
+    .fee-record-form {
+      max-width: 90%;
+      margin: 100px auto 40px; /* Adjusted top margin for tablets and small desktops */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .fee-record-form {
+      margin: -30px auto 20px; 
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    .fee-record-form input[type="text"],
+    .fee-record-form input[type="number"],
+    .fee-record-form input[type="date"],
+    .fee-record-form select,
+    .fee-record-form button {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .fee-record-form {
+      margin: -30px 10px 10px; /* Further adjusted top margin for mobile */
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  
+    .fee-record-form .lb {
+      font-size: 14px;
+    }
+  
+    .fee-record-form input[type="text"],
+    .fee-record-form input[type="number"],
+    .fee-record-form input[type="date"],
+    .fee-record-form select {
+      padding: 8px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  
+    .fee-record-form button {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .error-message {
+      font-size: 12px;
+      margin-top: -12px;
+      margin-bottom: 12px;
+    }
+  
+    .success-message {
+      font-size: 14px;
+      margin-top: 15px;
+      padding: 8px;
+    }
+  }
+  
+  /* Accessibility improvements */
+  .fee-record-form input:focus,
+  .fee-record-form select:focus,
+  .fee-record-form button:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+  }
+  
+  /* Animation for form appearance */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .fee-record-form {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Fee Record Container styles */
+  .fee-record-container {
+    margin-top: 80px; /* Adjusted to prevent navbar overlap */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fee-record-navigation {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .fee-record-navigation li {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .fee-record-navigation li a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .fee-record-navigation li a:hover,
+  .fee-record-navigation li a:focus {
+    background-color: #e0e0e0;
+  }
+  
+  .fee-record-content {
+    margin-top: 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .fee-record-container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    .fee-record-navigation {
+      width: 25%;
+      flex-direction: column;
+      margin-right: 20px;
+    }
+  
+    .fee-record-content {
+      width: 75%;
+      margin-top: 0;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .fee-record-container {
+      margin-top: 100px; /* Further adjusted for larger screens */
+    }
+  
+    .fee-record-navigation li a {
+      padding: 15px;
+      font-size: 1.1rem;
+    }
+  }

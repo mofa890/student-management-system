@@ -1,0 +1,221 @@
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 5px 20px; 
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+} 
+
+/* Menu and Menu Items */
+.menu {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  margin-right: 10px;
+  position: relative;
+}
+
+.menu-link {
+  color: #333333;
+  text-decoration: none;
+  padding: 8px 12px; 
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+}
+
+.menu-link:hover, .menu-link:focus {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.menu-link.active {
+  background-color: #e0e0e0;
+  color: #000000;
+ 
+}
+
+/* Home bar styles */
+.home-bar {
+  position: fixed;
+  border-radius: 7px;
+  top: 49px;
+  left: -250px;
+  width: 250px;
+  height: calc(100vh - 60px);
+  background-color: #ffffff;
+  overflow-y: auto;
+  transition: left 0.3s ease-in-out;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-bar.open {
+  left: 0;
+}
+
+.home-bar-content {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  
+}
+
+.home-bar-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.home-bar-link:hover {
+  background-color: #f0f0f0;
+}
+
+/* Student and Fee sections */
+.fee-stdnt-section-parent {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.home-bar-content ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.home-bar-content ul li {
+  padding: 5px 0;
+}
+.menu-link.active,
+.home-bar-link.active,
+.home-bar-content.active {
+  background-color: #e0e0e0;
+  color: #000000;
+  font-weight: bold;
+}
+
+.home-bar-content.active {
+  border-left: 4px solid #3498db;
+}
+
+/* Logout Button */
+.home-bar-content:last-child {
+  margin-top: auto;
+  border-bottom: none;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.logout-button:hover, .logout-button:focus {
+  background-color: #c0392b;
+  outline: none;
+}
+
+/* Accessibility */
+.menu-link:focus-visible,
+.home-bar-link:focus-visible,
+.logout-button:focus-visible {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Animation for content */
+.content-wrapper {
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.content-wrapper.shifted {
+  margin-left: 250px;
+}
+
+/* Ensure content below navbar is not hidden */
+body {
+  padding-top: 60px;
+}
+
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 4px 10px;
+  }
+
+  .menu-link {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .home-bar {
+    width: 220px;
+    left: -220px;
+  }
+
+  .content-wrapper.shifted {
+    margin-left: 220px;
+  }
+
+  body {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 3px 5px;
+  }
+
+  .menu-link {
+    padding: 5px 6px;
+    font-size: 12px;
+  }
+
+  .home-bar {
+    width: 200px;
+    left: -200px;
+  }
+
+  .content-wrapper.shifted {
+    margin-left: 200px;
+  }
+
+  body {
+    padding-top: 45px;
+  }
+
+  .home-bar-link, .logout-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
