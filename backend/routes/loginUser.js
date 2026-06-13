@@ -18,6 +18,10 @@ router.post('/', (req, res) => {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
+
+            if (!user.password) {
+                return res.status(401).json({ message: 'Please sign in with Google' });
+            }
            
 
             // Compare the provided password with the hashed password

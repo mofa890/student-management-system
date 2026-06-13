@@ -1,47 +1,112 @@
 // EmailCredentialForm.js
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../styles/Components/EmailCredentials.css';
 
-
 const EmailCredentialForm = () => {
-  const [email, setEmail] = useState('');
-  const [appPassword, setAppPassword] = useState('');
+  const [connection, setConnection] = useState({
+    connected: false,
+    email: null,
+    connectedAt: null,
+  });
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-// Assuming you have userId stored in session or localStorage
-const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
 
-// Frontend   EmailCredentialForm.js
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post(`${process.env.REACT_APP_API_BASE_URL}/saveEmailCredentials`, {
-      email,
-      appPassword,
-      userId,  // Send userId to associate the credentials with the logged-in user
-    });
-    alert('Credentials saved successfully!');
-  } catch (err) {
-    console.error('Error saving credentials:', err);
-  }
-};
+  const fetchConnectionStatus = useCallback(async () => {
+    if (!token) {
+      setMessage('Please log in before connecting Gmail.');
+      setIsLoading(false);
+      return;
+    }
 
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/saveEmailCredentials/status`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setConnection(response.data);
+    } catch (err) {
+      setMessage(err.response?.data?.message || 'Unable to check Gmail connection.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const connected = params.get('connected');
+
+    if (connected === 'success') {
+      setMessage('Gmail connected successfully.');
+    } else if (connected === 'no_refresh_token') {
+      setMessage('Google did not return permission for offline email sending. Please try reconnecting.');
+    } else if (connected === 'failed') {
+      setMessage('Gmail connection failed. Please try again.');
+    }
+
+    fetchConnectionStatus();
+  }, [fetchConnectionStatus]);
+
+  const handleConnectGoogle = () => {
+    if (!token) {
+      setMessage('Please log in before connecting Gmail.');
+      return;
+    }
+
+    window.location.href = `${process.env.REACT_APP_API_BASE_URL}/saveEmailCredentials/google?token=${encodeURIComponent(token)}`;
+  };
+
+  const handleDisconnect = async () => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/saveEmailCredentials`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setConnection({
+        connected: false,
+        email: null,
+        connectedAt: null,
+      });
+      setMessage('Gmail disconnected successfully.');
+    } catch (err) {
+      setMessage(err.response?.data?.message || 'Unable to disconnect Gmail.');
+    }
+  };
 
   return (
-    <form className='add-email-from' onSubmit={handleSubmit}>
-      <label>Email: </label>
-      <input id='email-from-inpt' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      
-      <label>App Password: </label>
-      <input id='email-from-inpt'  type="password" value={appPassword} onChange={(e) => setAppPassword(e.target.value)} required />
+    <section className="add-email-from">
+      <h2 className="email-connection-title">Receipt Email</h2>
 
-      <button id='email-from-btn'  type="submit">Submit</button>
+      {isLoading ? (
+        <p className="email-status">Checking Gmail connection...</p>
+      ) : connection.connected ? (
+        <>
+          <p className="email-status">Connected Gmail account</p>
+          <p className="connected-email">{connection.email}</p>
+          <button id="email-from-btn" type="button" onClick={handleConnectGoogle}>
+            Reconnect Google
+          </button>
+          <button className="disconnect-email-btn" type="button" onClick={handleDisconnect}>
+            Disconnect
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="email-status">Connect Gmail to send fee receipts automatically.</p>
+          <button id="email-from-btn" type="button" onClick={handleConnectGoogle}>
+            Connect Google
+          </button>
+        </>
+      )}
 
-         {/* Direct link for app passwords and 2FA */}
-      <p className='app-password-help'>
-        Need help? <a href="https://support.google.com/accounts/answer/185201?hl=en" target="_blank" rel="noopener noreferrer">Click here to learn how to generate an 'App Password' and set up 'Two-Factor Authentication'.</a>
-      </p>
-    </form>
+      {message && <p className="app-password-help">{message}</p>}
+    </section>
   );
 };
 

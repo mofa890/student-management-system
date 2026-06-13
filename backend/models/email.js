@@ -7,16 +7,27 @@ const userMailSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
-  appPassword: {
+  googleId: {
     type: String,
     required: true,
+  },
+  refreshToken: {
+    type: String,
+    required: true,
+  },
+  tokenScope: {
+    type: String,
+  },
+  connectedAt: {
+    type: Date,
+    default: Date.now,
   },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',  // Reference to the User model
     required: true,
+    unique: true,
   },
 });
 

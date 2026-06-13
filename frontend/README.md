@@ -1,8 +1,9 @@
 # Frontend
+cd frontend
 npm install
 npm start
 
 # Backend
-cd api
+cd backend
 npm install
 npm run dev

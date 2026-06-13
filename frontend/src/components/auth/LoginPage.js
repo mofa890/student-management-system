@@ -36,6 +36,10 @@ const LoginPage = () => {
     navigate('/forgot-password');
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_API_BASE_URL}/auth/google`;
+  };
+
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h2 className="form-header">Login</h2>
@@ -57,6 +61,9 @@ const LoginPage = () => {
       />
       <button className="form-button" type="submit">Login</button>
       <h4 className="form-divider">OR</h4>
+      <button className="google-auth-button" type="button" onClick={handleGoogleLogin}>
+        Continue with Google
+      </button>
       <button className="toggle-button" type="button" onClick={() => navigate('/signup')}>
         Signup
       </button>

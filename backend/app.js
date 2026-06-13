@@ -1,13 +1,15 @@
 
 //  api/app.js
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const signupUser = require('./routes/signupUser');
 const poststudent=require('./routes/poststudent');
 const loginUser=require('./routes/loginUser');
+const googleAuth=require('./routes/googleAuth');
 const getStudents=require('./routes/getStudents');
 const updateStudent=require('./routes/updateStudent');
 const deleteStudent=require('./routes/deleteStudent');
@@ -42,12 +44,14 @@ mongoose.connect(process.env.MONGO_URI)
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
 
 
 
 // Routes
 app.use('/signupUser',signupUser);
 app.use('/loginUser',loginUser);
+app.use('/auth',googleAuth);
 app.use('/getStudents',getStudents);
 app.use('/poststudent',poststudent);
 app.use('/deleteStudent', deleteStudent);

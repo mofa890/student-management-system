@@ -61,7 +61,7 @@ const FeeFormSubmit = () => {
     }
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/addFeeRecord`, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/addFeeRecord`, {
         stdId: studentId,
         feeType,
         amount,
@@ -78,9 +78,10 @@ const FeeFormSubmit = () => {
       setFailureMessage(''); // Clear any previous failure message
       setError(''); // Clear any previous error message
     } catch (err) {
+      const message = err.response?.data?.message || 'Failed to submit fee record';
       setSuccessMessage(''); // Clear any previous success message
-      setFailureMessage('Failed to submit fee record'); // Show failure message
-      setError(err.response?.data?.message || 'Failed to submit fee record');
+      setFailureMessage(message); // Show failure message
+      setError(message);
     }
   };
 
@@ -144,6 +145,7 @@ const FeeFormSubmit = () => {
 
       {/* Show failure message */}
       {failureMessage && <p className="error-message">{failureMessage}</p>}
+      {error && !failureMessage && <p className="error-message">{error}</p>}
     </form>
   );
 };

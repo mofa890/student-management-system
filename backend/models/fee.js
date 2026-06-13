@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Student = require('../models/students'); // Reference to the student model
 const User = require('../models/user'); // Reference to the user model
-const { type } = require('@testing-library/user-event/dist/type');
+
 
 const feeSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,

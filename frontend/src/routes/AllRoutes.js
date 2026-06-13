@@ -13,6 +13,7 @@ const Navbar = lazy(() => import('../components/layout/Navbar'));
 const ForgotPasswordPage = lazy(() => import('../components/user-management/ForgotPasswordPage'));
 const LoginPage = lazy(() => import('../components/auth/LoginPage'));
 const SignupPage = lazy(() => import('../components/auth/SignupPage'));
+const OAuthCallback = lazy(() => import('../components/auth/OAuthCallback'));
 const Home=lazy(()=>import('../components/Home'));
 const AddRecord = lazy(() => import('../components/forms/AddRecord'));
 const FetchRecord = lazy(() => import('../components/forms/FetchRecord'));
@@ -79,6 +80,7 @@ const AllRoutes = () => {
             <Route path="/" element={<AuthPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/oauth/callback" element={<OAuthCallback />} />
             {/* <Route path="/signup" element={<SignupPage />} /> */}
             <Route path="/signup" element={<SignupPage onAuthSuccess={handleAuthSuccess} />} />
             <Route path="/about" element={<About />} />

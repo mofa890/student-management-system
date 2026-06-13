@@ -7,7 +7,13 @@ const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
     emailOrPhone: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String },
+    googleId: { type: String, unique: true, sparse: true },
+    authProvider: {
+        type: String,
+        enum: ['local', 'google'],
+        default: 'local',
+    },
     //Fields for password reset
     resetPasswordToken: { type: String },
     resetPasswordExpires: { type: Date },

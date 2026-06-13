@@ -35,6 +35,10 @@ const SignupPage = ({ onAuthSuccess }) => {
     navigate('/'); // Redirect to login page
   };
 
+  const handleGoogleSignup = () => {
+    window.location.href = `${process.env.REACT_APP_API_BASE_URL}/auth/google`;
+  };
+
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSubmit}>
@@ -65,6 +69,9 @@ const SignupPage = ({ onAuthSuccess }) => {
         />
         <button className="form-button" type="submit">Signup</button>
         <h4 className="form-divider">OR</h4>
+        <button className="google-auth-button" type="button" onClick={handleGoogleSignup}>
+          Continue with Google
+        </button>
         {error && <p className="error-message">{error}</p>}
         <button className="toggle-button" type="button" onClick={() => navigate('/')}> 
           Login
